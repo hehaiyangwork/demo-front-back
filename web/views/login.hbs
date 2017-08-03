@@ -1,0 +1,37 @@
+{{> top}}
+<h1>登录</h1>
+{{json data}}
+<p>Welcome to {{title}}</p>
+<button type="button" value="登录" class="login-btn">
+<script>
+
+    function setCookie(name, value, time){
+      var exp = new Date();
+      exp.setTime(exp.getTime() + time);
+      document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    }
+    function loginEvent(){
+      $.ajax({
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        type: "POST",
+        url: "api/login",
+        // headers: {token:"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJqd3QiLCJpYXQiOjE1MDE0MDUxNzksInN1YiI6IntcIm5hbWVcIjpcImhlaGFpeWFuZ1wifSIsImV4cCI6MTUwMTQwODc3OX0.LoZ9ksHtd_AZRegpWAJJrfq75Xay_jL5u78WJPa157M"},
+        // data: JSON.stringify(data),
+        success: function(e){
+          alert(JSON.stringify(e));
+          setCookie("token", e.token, 7*24*60*60*1000);
+        },
+        error: function(e){
+          alert(e.responseText|| "未知故障");
+        }
+        // ,beforeSend: function(request) {
+        //     request.setRequestHeader("token", "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJqd3QiLCJpYXQiOjE1MDE0MDUxNzksInN1YiI6IntcIm5hbWVcIjpcImhlaGFpeWFuZ1wifSIsImV4cCI6MTUwMTQwODc3OX0.LoZ9ksHtd_AZRegpWAJJrfq75Xay_jL5u78WJPa157M");
+        // }
+      });
+    }
+
+    $(function () {
+        $(document).on("click", ".login-btn", loginEvent);
+    })
+</script>

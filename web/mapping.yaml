@@ -1,0 +1,14 @@
+"index":
+  type: http
+  method: GET
+  url: /api/index
+
+"login":
+  type: http
+  method: GET
+  url: /api/user
+
+"user/index":
+  type: http
+  method: GET
+  url: /api/user/index

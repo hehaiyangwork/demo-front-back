@@ -1,0 +1,5 @@
+app:
+  name: back-service
+
+server:
+  port: 8088

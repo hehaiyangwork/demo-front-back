@@ -1,0 +1,19 @@
+{{> top}}
+<h1>{{title}}</h1>
+{{json data}}
+<p>Welcome to {{title}}</p>
+<script>
+    $(function () {
+        $.ajax({
+            url:'/api/now',
+            type:'get',
+            data:'',
+            success:function (data) {
+              $("body").append(data.message);
+            },
+            error:function () {
+
+            }
+        })
+    })
+</script>
